@@ -79,6 +79,16 @@ Não há cobertura de testes implementados. Nenhum relatório de 100% foi inclu�
 Análise publicada e Quality Gate aprovado são coisas diferentes: o gate poderá
 falhar por problemas reais da API ou por cobertura, e essas falhas não são ocultadas.
 
+### Verificação realizada em 03/10/2026
+
+A [execução no GitHub Actions](https://github.com/Thiago757/integration-tests-jest/actions/runs/37131442384)
+instalou as dependências, iniciou a API e enviou a análise ao Sonar com sucesso.
+O Sonar processou 10.375 linhas de código e registrou zero testes implementados,
+um TODO e cobertura de 0%.
+O Quality Gate reprovou por cobertura abaixo de 80% e classificação de
+confiabilidade E (9 apontamentos de bugs). Não é erro de conexão ou de token.
+As regras do gate não foram enfraquecidas, nem os testes foram resolvidos.
+
 Para análise local após `npm run ci`, no macOS/zsh:
 
 ```sh
