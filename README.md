@@ -1,40 +1,44 @@
-# API test automation with Jest and PactumJS
+# API Carga Fácil — ambiente da prova
 
-> Simple integration between JestJS and PactumJS.
+Backend real Node/Express do Carga Fácil, com banco SQLite temporário.
+Disponibiliza GET, POST, PUT, PATCH e DELETE, além de autenticação por sessão.
+**Não contém solução dos testes do Carga Fácil**: eles serão escritos na prova
+de segunda-feira, 05/10/2026.
 
-## GitHub Actions
+[![Preparação e SonarCloud](https://github.com/Thiago757/integration-tests-jest/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/Thiago757/integration-tests-jest/actions/workflows/node.js.yml)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=Thiago757_integration-tests-jest&metric=alert_status)](https://sonarcloud.io/dashboard?id=Thiago757_integration-tests-jest)
 
-[![Node.js CI](https://github.com/ugioni/integration-tests-jest/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/ugioni/integration-tests-jest/actions/workflows/node.js.yml)
+## Executar a API
 
-## SonarCloud
+Use Node.js **24.15+ na linha 24**:
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ugioni_integration-tests-jest&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ugioni_integration-tests-jest)
+```sh
+npm ci
+npm run api
+```
 
-# Getting Started
+Endereço: `http://127.0.0.1:4318`. O terminal mostra credenciais temporárias.
+Cada execução começa com banco vazio, sem acessar os dados do projeto original.
 
-### Pactum docs:
- - [PactumJS](https://pactumjs.github.io/)
+## Ambiente dos testes e Sonar
 
-### Prerequisites:
- - NodeJS `v22`
+```sh
+npm run ci          # valida infraestrutura, inicia API e executa o arquivo de prova
+npm test            # runner para os testes que serão escritos na prova
+npm run sonar       # análise local; requer SONAR_TOKEN no ambiente
+```
 
-### How to run?
+O arquivo `test/carga_facil.spec.ts` contém somente um `test.todo`.
+O runner fornece URL e credenciais temporárias via variáveis de ambiente.
+Uma execução com TODO **não significa que testes foram implementados ou aprovados**.
 
-Inside of the project folder run:
+O Sonar analisa o **código da API**, não um cliente com cobertura artificial.
+O workflow envia a análise ao projeto `Thiago757_integration-tests-jest` e aguarda
+o Quality Gate. Ainda não há cobertura: o gate pode apontar problemas do backend
+ou ausência de cobertura enquanto os testes não forem implementados.
 
- 1. `npm install --save-dev`
- 1. `npm run ci`
+Veja [as instruções de uso](docs/PROVA.md) e [a origem da API](api/carga-facil/ORIGEM.md).
 
-After that you should see a `./output` folder with some `HTML` reports.
-
-### Docs to Api under tests: 
- - [Dummyjson](https://dummyjson.com/docs)
- - [Gorest](https://gorest.co.in/)
- - [Toolshop API](https://api.practicesoftwaretesting.com/api/documentation)
- - [Deck of Cards](https://deckofcardsapi.com/)
- - [JSON placeholder](https://jsonplaceholder.typicode.com/)
- - [http bin](http://httpbin.org/)
- - [rick and morty api](https://rickandmortyapi.com/documentation/#rest)
- - [Petstore](https://petstore.swagger.io/#/) 
- - [ServeRest](https://serverest.dev/#/)
- - [ServeRest - Datadog](https://p.datadoghq.eu/sb/421fcfee-35ec-11ee-b87f-da7ad0900005-2aaf85264a89d11b7001bcab452a266e?refresh_mode=sliding&theme=light&tpl_var_env%5B0%5D=serverest.dev&from_ts=1699931511294&to_ts=1699932411294&live=true)
+Os oito exemplos originais do repositório, para outras APIs públicas, foram
+preservados como referência e podem ser executados com `npm run test:external`.
+Não são a solução da prova do Carga Fácil e precisam de internet.

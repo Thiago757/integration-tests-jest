@@ -1,0 +1,16 @@
+ALTER TABLE veiculos RENAME COLUMN carroceria TO carroceria_anterior;
+ALTER TABLE veiculos ADD COLUMN carroceria TEXT NOT NULL DEFAULT '' CHECK(carroceria IN ('','Graneleiro','Grade baixa','Aberta','Baú','Sider','Tanque','Basculante','Prancha'));
+UPDATE veiculos SET carroceria=carroceria_anterior;
+ALTER TABLE veiculos DROP COLUMN carroceria_anterior;
+ALTER TABLE veiculos RENAME COLUMN configuracao_eixos TO configuracao_eixos_anterior;
+ALTER TABLE veiculos ADD COLUMN configuracao_eixos TEXT NOT NULL DEFAULT '' CHECK(configuracao_eixos IN ('','LS','2 eixos','3 eixos','4 eixos','5 eixos','6 eixos','7 eixos','8 eixos','9 eixos'));
+UPDATE veiculos SET configuracao_eixos=configuracao_eixos_anterior;
+ALTER TABLE veiculos DROP COLUMN configuracao_eixos_anterior;
+ALTER TABLE cargas RENAME COLUMN carroceria TO carroceria_anterior;
+ALTER TABLE cargas ADD COLUMN carroceria TEXT NOT NULL DEFAULT '' CHECK(carroceria IN ('','Graneleiro','Grade baixa','Aberta','Baú','Sider','Tanque','Basculante','Prancha'));
+UPDATE cargas SET carroceria=carroceria_anterior;
+ALTER TABLE cargas DROP COLUMN carroceria_anterior;
+ALTER TABLE cargas RENAME COLUMN configuracao_eixos TO configuracao_eixos_anterior;
+ALTER TABLE cargas ADD COLUMN configuracao_eixos TEXT NOT NULL DEFAULT '' CHECK(configuracao_eixos IN ('','LS','2 eixos','3 eixos','4 eixos','5 eixos','6 eixos','7 eixos','8 eixos','9 eixos'));
+UPDATE cargas SET configuracao_eixos=configuracao_eixos_anterior;
+ALTER TABLE cargas DROP COLUMN configuracao_eixos_anterior;

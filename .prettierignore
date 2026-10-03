@@ -1,7 +1,5 @@
 node_modules
+output
+coverage
 api/carga-facil/server
 api/carga-facil/shared
-assets
-dist
-output
-.vscode
